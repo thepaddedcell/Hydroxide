@@ -14,6 +14,7 @@
 @synthesize webView=_webView;
 @synthesize tableView=_tableView;
 @synthesize sections=_sections;
+@synthesize loadingView=_loadingView;
 
 - (void)didReceiveMemoryWarning
 {
@@ -112,7 +113,13 @@
     {
         case UIWebViewNavigationTypeLinkClicked:
         {
-            // This is where you do the bulk of your work.
+            // This is where you catch Clicked links
+            NSLog(@"Clicked");
+            break;
+        }   
+        case UIWebViewNavigationTypeOther:
+        {    
+            // When you generate a load URL Request or change an Anchor tag
             NSArray* urlParts = [request.URL.absoluteString componentsSeparatedByString:@"://"];
             if ([[urlParts objectAtIndex:0] isEqualToString:@"native"]) 
             {
@@ -127,16 +134,28 @@
                                          self.webView.frame = frame;
                                          //TODO : Add button / swipe / pan gesture to allow moving back
                                      }];
-                    shouldLoad = NO;
                 }
+                else if([message isEqualToString:@"addsubview"])
+                {
+                    if (!self.loadingView) 
+                        self.loadingView = [[UIView alloc] initWithFrame:(CGRect){0, 0, 100, 100}];
+                    self.loadingView.center = self.view.center;
+                    self.loadingView.backgroundColor = [UIColor colorWithWhite:0.f alpha:0.7f];
+                    UIActivityIndicatorView* spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+                    [spinner startAnimating];
+                    [self.loadingView addSubview:spinner];
+                    [self.view addSubview:self.loadingView];
+                    
+                }
+                else if([message isEqualToString:@"removesubview"])
+                {
+                    [self.loadingView removeFromSuperview];
+                }
+                
+                shouldLoad = NO;
             }
             break;
         }   
-        case UIWebViewNavigationTypeOther:
-            // When you generate a load URL Request or change an Anchor tag
-            NSLog(@"Other");
-            break;
-            
         case UIWebViewNavigationTypeReload:
             // When you call reload - These are generally not used
             NSLog(@"Reload");

@@ -14,5 +14,6 @@
 @property (nonatomic, strong) IBOutlet UITableView* tableView;
 
 @property (nonatomic, retain) NSArray* sections;
+@property (nonatomic, retain) UIView* loadingView;
 
 @end
