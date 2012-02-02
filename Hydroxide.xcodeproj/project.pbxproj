@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		89BC2E2E14DA36D500CBD770 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89BC2E2D14DA36D500CBD770 /* MapKit.framework */; };
 		89D7E0F614D69F5A00E090BF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89D7E0F514D69F5A00E090BF /* UIKit.framework */; };
 		89D7E0F814D69F5A00E090BF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89D7E0F714D69F5A00E090BF /* Foundation.framework */; };
 		89D7E0FA14D69F5A00E090BF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89D7E0F914D69F5A00E090BF /* CoreGraphics.framework */; };
@@ -48,6 +49,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		89BC2E2D14DA36D500CBD770 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		89D7E0F114D69F5A00E090BF /* Hydroxide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hydroxide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89D7E0F514D69F5A00E090BF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		89D7E0F714D69F5A00E090BF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -130,6 +132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89BC2E2E14DA36D500CBD770 /* MapKit.framework in Frameworks */,
 				89D7E11314D6A37F00E090BF /* CoreData.framework in Frameworks */,
 				89D7E0F614D69F5A00E090BF /* UIKit.framework in Frameworks */,
 				89D7E0F814D69F5A00E090BF /* Foundation.framework in Frameworks */,
@@ -160,6 +163,7 @@
 		89D7E0F414D69F5A00E090BF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				89BC2E2D14DA36D500CBD770 /* MapKit.framework */,
 				89D7E11214D6A37F00E090BF /* CoreData.framework */,
 				89D7E0F514D69F5A00E090BF /* UIKit.framework */,
 				89D7E0F714D69F5A00E090BF /* Foundation.framework */,
@@ -514,6 +518,7 @@
 				89D7E11114D69F5A00E090BF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

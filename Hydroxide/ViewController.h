@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
-@interface ViewController : UIViewController <UIWebViewDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface ViewController : UIViewController <UIWebViewDelegate, UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate>
 
 @property (nonatomic, strong) IBOutlet UIWebView* webView;
 @property (nonatomic, strong) IBOutlet UITableView* tableView;

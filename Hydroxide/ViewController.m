@@ -128,7 +128,12 @@
                 if ([message isEqualToString:@"menu"]) 
                 {
                     CGRect frame = self.webView.frame;
-                    frame.origin.x = 150;
+                    
+                    if (frame.origin.x == 0)
+                        frame.origin.x = 150;
+                    else
+                        frame.origin.x = 0;
+                    
                     [UIView animateWithDuration:0.3f 
                                      animations:^{
                                          self.webView.frame = frame;
@@ -144,12 +149,38 @@
                     UIActivityIndicatorView* spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
                     [spinner startAnimating];
                     [self.loadingView addSubview:spinner];
-                    [self.view addSubview:self.loadingView];
-                    
+                    [self.view addSubview:self.loadingView];                    
                 }
                 else if([message isEqualToString:@"removesubview"])
                 {
                     [self.loadingView removeFromSuperview];
+                }
+                else if([message rangeOfString:@"height"].location != NSNotFound)
+                {
+                    NSArray* info = [message componentsSeparatedByString:@"&"];
+                    CGFloat height = [[[[info objectAtIndex:0] componentsSeparatedByString:@":"] objectAtIndex:1] floatValue];
+                    CGFloat speed = [[[[info objectAtIndex:1] componentsSeparatedByString:@":"] objectAtIndex:1] floatValue];
+                    [UIView animateWithDuration:speed animations:^{
+                        CGRect frame = self.webView.frame;
+                        frame.size.height = height;
+                        self.webView.frame = frame;
+                    }];
+                }
+                else if([message isEqualToString:@"map"])
+                {
+                    MKMapView* mapView = [[MKMapView alloc] initWithFrame:self.webView.frame];
+                    mapView.showsUserLocation = YES;
+                    mapView.delegate = self;
+                    
+                    UIViewController* mapViewController = [[UIViewController alloc] init];
+                    [mapViewController.view addSubview:mapView];
+                    
+                    UINavigationController* mapNavigationController = [[UINavigationController alloc] initWithRootViewController:mapViewController];
+                    mapNavigationController.navigationBar.barStyle = UIBarStyleBlack;
+                    UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissModalViewControllerAnimated:)];
+                    mapViewController.navigationItem.rightBarButtonItem = doneButton;
+                    
+                    [self presentModalViewController:mapNavigationController animated:YES];
                 }
                 
                 shouldLoad = NO;
@@ -183,6 +214,16 @@
     // Place any special code here to handle when your web requests fail
     // - things like removing loading views, prompting the user to check their connection etc 
     NSLog(@"WebView Failed: %@", error);
+}
+
+#pragma mark - MapView Delegate
+
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
+{
+    [mapView setRegion:MKCoordinateRegionMake(userLocation.coordinate, 
+                                              MKCoordinateSpanMake(userLocation.location.horizontalAccuracy, 
+                                                                   userLocation.location.horizontalAccuracy)) 
+              animated:YES];
 }
 
 @end

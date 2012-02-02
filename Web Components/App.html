@@ -2,19 +2,40 @@
 <head>
  <script src="jquery.js"></script>
  <script src="hydroxide.js"></script>
+ <link rel="stylesheet" type="text/css" href="style.css">
  <meta name="viewport" content="width=device-width">
 </head>
-<body style="margin:0px; font-family:sans-serif;">
+<body>
     
-    <div style="width:100%; height:33px; background-color:#000; padding-left:10px; padding-right:10px;padding-top:11px;">
-        <div style="background:url('menu.png') no-repeat; width:22px; height:22px; display:inline-block" onclick="native('menu');">&nbsp;</div>
-        <div id="title" style="color:white; display:inline-block; width:75%; text-align:center">Home</div>
+    <div id="header">
+        <div id="menuButton" onclick="native('menu');">&nbsp;</div>
+        <div id="title">Home</div>
     </div>
     
     <div id="content" style="width:100%; padding:10px; height:100%">
-        <div onclick="native('addsubview')" style="width:50%; margin:auto; height:32px; padding-top:12px; background:green; color:white; text-align:center;">Add Subview</div>
+    
+        <div id="Home">
+            <div onclick="native('addsubview')" id="addSubView" class="largeButton">Add Subview</div>
+            
+            <div onclick="native('removesubview')" id="removeSubView" class="largeButton">Remove Subview</div>
+        </div>
+    
+        <div id="News">
+            <div onclick="native('height:400&speed:1')" id="shrink" class="largeButton">Shrink</div>
+                        <div onclick="native('height:480&speed:0.3')" id="grow" class="largeButton">Grow</div>
+            
+        </div>
+    
+        <div id="Sports">
+            <div onclick="native('')" id="a" class="largeButton">A</div>
+                        <div onclick="native('')" id="b" class="largeButton">B</div>
+            
+        </div>
         
-        <div onclick="native('removesubview')" style="width:50%; margin:auto; height:32px; padding-top:12px; background:red; color:white; text-align:center; margin-top:10px">Remove Subview</div>
+        <div id="Movies">
+            <div onclick="native('map')" id="map" class="largeButton">Map</div>
+        </div>
+    
     </div>
     
 </body>
