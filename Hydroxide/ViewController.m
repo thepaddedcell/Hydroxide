@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "Section+Additions.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation ViewController
 
@@ -147,7 +148,12 @@
                     self.loadingView.center = self.view.center;
                     self.loadingView.backgroundColor = [UIColor colorWithWhite:0.f alpha:0.7f];
                     UIActivityIndicatorView* spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+                    spinner.frame = CGRectMake((self.loadingView.frame.size.width - spinner.frame.size.width)/2,
+                                               (self.loadingView.frame.size.height - spinner.frame.size.height)/2, 
+                                               spinner.frame.size.width, 
+                                               spinner.frame.size.height);
                     [spinner startAnimating];
+                    self.loadingView.layer.cornerRadius = 10.f;
                     [self.loadingView addSubview:spinner];
                     [self.view addSubview:self.loadingView];                    
                 }
